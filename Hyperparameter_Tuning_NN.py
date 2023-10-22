@@ -75,11 +75,14 @@ from kerastuner.tuners import RandomSearch
 def build_model(hp):
   model = keras.Sequential()
   for i in range(hp.Int('num_layers', 2,20)):
-    model.add(layers.Dense(units = hp.Int('units_' + str(i),
-                                          min_value = 16,
-                                          max_value = 512,
-                                          step = 32),
-                           activation = 'relu'))
+    model.add(
+        layers.Dense(
+            units=hp.Int(f'units_{str(i)}',
+                         min_value=16,
+                         max_value=512,
+                         step=32),
+            activation='relu',
+        ))
     model.add(layers.Dense(1, activation='sigmoid'))
 
     model.compile(

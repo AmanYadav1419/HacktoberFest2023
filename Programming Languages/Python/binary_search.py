@@ -14,6 +14,6 @@ x = 10
 
 result = bin(arr, 0, len(arr)-1, x)
 if result != -1:
-    print(str(result))
+    print(result)
 else:
     print("Element not there in array")

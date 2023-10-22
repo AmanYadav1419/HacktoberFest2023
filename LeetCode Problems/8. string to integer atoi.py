@@ -1,13 +1,10 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
         s = list(s.strip())
-        if len(s) == 0:
+        if not s:
             return 0
 
-        sign = 1
-        if s[0] == "-":
-            sign = -1
-
+        sign = -1 if s[0] == "-" else 1
         if s[0] in ["+", "-"]:
             del s[0]
 

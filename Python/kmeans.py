@@ -42,11 +42,10 @@ def assign_cluster(data, centroids):
     cluster = []
     # looping through each data point
     for i in range(len(data)):
-        distances = []
-        # looping through each centroid
-        for j in range(len(centroids)):
-            # calculating the distance between the data point and the centroid
-            distances.append(np.linalg.norm(data[i] - centroids[j]))
+        distances = [
+            np.linalg.norm(data[i] - centroids[j])
+            for j in range(len(centroids))
+        ]
         # assigning the data point to the closest centroid
         cluster.append(np.argmin(distances))
     print(cluster)
@@ -54,11 +53,7 @@ def assign_cluster(data, centroids):
 
 # updating the centroids
 def update_centroids(data, cluster, k):
-    centroids = []
-    # looping through each cluster
-    for i in range(k):
-        # calculating the new centroid
-        centroids.append(np.mean(data[np.array(cluster) == i], axis=0))
+    centroids = [np.mean(data[np.array(cluster) == i], axis=0) for i in range(k)]
     return np.array(centroids)
 
 # plotting the data points and the centroids
@@ -68,7 +63,7 @@ def plot(data, centroids, cluster):
     plt.show()
 
 # running the algorithm for 10 iterations
-for i in range(10):
+for _ in range(10):
     cluster = assign_cluster(data, centroids)
     centroids = update_centroids(data, cluster, k)
 plot(data, centroids, cluster)

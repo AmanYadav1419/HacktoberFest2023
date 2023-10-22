@@ -28,23 +28,23 @@ class MainApp(App):
 					self.label.text = self.label.text + instance.text
 	
 	def return_result(self, instance):
-		if self.label.text != "":
-			try:
-				text = self.label.text
-				if "×" in text:
-					text = text.replace("×", "*")
-				if "÷" in text:
-					text = text.replace("÷", "/")
-				if "^" in text:
-					text = text.replace("^", "**")
-				if "√" in text:
-					text = text.replace("√", "**(1/2)")
-					
-				text = eval(text)
-				self.label.text = str(text)
-			except Exception:
-				pass
-				self.label.text = "Error"
+		if self.label.text == "":
+			return
+		try:
+			text = self.label.text
+			if "×" in text:
+				text = text.replace("×", "*")
+			if "÷" in text:
+				text = text.replace("÷", "/")
+			if "^" in text:
+				text = text.replace("^", "**")
+			if "√" in text:
+				text = text.replace("√", "**(1/2)")
+
+			text = eval(text)
+			self.label.text = str(text)
+		except Exception:
+			self.label.text = "Error"
 		
 	def clean(self, instance):
 		self.label.text = ""

@@ -29,7 +29,7 @@ t1.goto(-20, 0)
 t1.pendown()
 
 # create rectangular box
-for i in range(2):
+for _ in range(2):
 	t1.forward(200)
 	t1.left(90)
 	t1.forward(70)

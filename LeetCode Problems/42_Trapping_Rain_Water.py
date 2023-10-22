@@ -9,11 +9,5 @@ class Solution:
             mx1=max(mx1,arr[i])
             right.append(mx1)
         right=right[::-1]
-        list1=[]
-        for i,j in zip(left,right):
-            list1.append(min(i,j))
-        count=0
-        for i in range(n):
-            if list1[i]-arr[i]>0:
-                count+=list1[i]-arr[i]
-        return count
+        list1 = [min(i,j) for i, j in zip(left,right)]
+        return sum(list1[i]-arr[i] for i in range(n) if list1[i]-arr[i]>0)

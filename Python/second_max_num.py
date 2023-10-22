@@ -9,4 +9,4 @@ for i in range(2, n):
     elif list1[i] > secondmax and mx != list1[i]:
         secondmax = list1[i]
 
-print("Second highest number is:", str(secondmax))
+print("Second highest number is:", secondmax)
