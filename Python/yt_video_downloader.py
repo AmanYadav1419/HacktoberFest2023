@@ -43,13 +43,7 @@ def download_low(link):
 def confirm():
     x = str(input("Do you want download other files?\nPress yes or no\n"))
     x = x.lower()
-    if x == "no" or "n":
-        return 0
-    elif x == "yes" or "y":
-        return 1
-    else:
-        print("Please enter the valid option\n")
-        return confirm()
+    return 0
 
 
 def execute(file_type):

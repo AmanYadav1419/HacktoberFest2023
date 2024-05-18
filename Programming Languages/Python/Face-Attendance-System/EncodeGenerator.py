@@ -53,10 +53,8 @@ encodeListKnownWithID = [encodeListKnown, studentID]
 
 print("Encoding Complete")
 
-# Save the face encodings along with student IDs to a pickle file
-file = open("EncodeFile.p", 'wb')
-pickle.dump(encodeListKnownWithID, file)
-file.close()
+with open("EncodeFile.p", 'wb') as file:
+    pickle.dump(encodeListKnownWithID, file)
 print("File Saved")
 
 

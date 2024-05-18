@@ -4,9 +4,12 @@ from datetime import datetime
 
 # Function to calculate age
 def calculate_age(birth_date):
-    today = datetime.today()
-    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
-    return age
+    today = datetime.now()
+    return (
+        today.year
+        - birth_date.year
+        - ((today.month, today.day) < (birth_date.month, birth_date.day))
+    )
 
 # Input birth date in YYYY-MM-DD format
 while True:

@@ -1,7 +1,6 @@
 from turtle import Turtle, Screen
 import random
 
-is_race_on = False
 screen = Screen()
 screen.setup(width=500, height=400)
 user_bet = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
@@ -17,9 +16,7 @@ for turtle_index in range(0, 6):
     new_turtle.goto(x=-230, y=y_positions[turtle_index])
     all_turtles.append(new_turtle)
 
-if user_bet:
-    is_race_on = True
-
+is_race_on = bool(user_bet)
 while is_race_on:
     for turtle in all_turtles:
         #230 is 250 - half the width of the turtle.

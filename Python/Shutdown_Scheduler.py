@@ -15,8 +15,7 @@ if __name__ == '__main__':
 
 
         def task():
-            text = int(input("Enter time for the execution of task!\n"))
-            return text
+            return int(input("Enter time for the execution of task!\n"))
 
 
         match x:

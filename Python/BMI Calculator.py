@@ -2,8 +2,7 @@
 unit = int(input("Height in 1. inches or 2. feet and inches or 3. centimeters? Choose and type 1 or 2 or 3 ->"))
 
 if unit == 1:
-    height_cm = float(input("Enter your height in inches: "))
-    height_cm *= 2.54
+    height_cm = float(input("Enter your height in inches: ")) * 2.54
 elif unit == 2:
     height_ft_inches = input("Enter in this format: 5'4 or foot'inches ->")
     feet, inches = map(int, height_ft_inches.split("'"))
@@ -36,13 +35,14 @@ bmi_categories = {
     (40, float('inf')): "You belong to obesity class III"
 }
 
-# Determine BMI category
-bmi_category = None
-for (min_value, max_value), category in bmi_categories.items():
-    if min_value <= bmi < max_value:
-        bmi_category = category
-        break
-
+bmi_category = next(
+    (
+        category
+        for (min_value, max_value), category in bmi_categories.items()
+        if min_value <= bmi < max_value
+    ),
+    None,
+)
 # Printing BMI and category
 print(f"Your Body Mass Index is: {bmi:.2f}")
 if bmi_category:

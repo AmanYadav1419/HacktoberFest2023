@@ -9,8 +9,7 @@ def multiply(x, y):
 
 def divide(x, y):
     try:
-        result = x / y
-        return result
+        return x / y
     except ZeroDivisionError:
         return "Cannot divide by zero"
 

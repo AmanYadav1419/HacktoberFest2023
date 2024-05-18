@@ -11,28 +11,25 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-extractedtime = open("Alarmtext.txt","rt")
-time = extractedtime.read()
-Time = str(time)
-extractedtime.close()
-
-deletetime = open("Alarmtext.txt","r+")
-deletetime.truncate(0)
-deletetime.close()
+with open("Alarmtext.txt","rt") as extractedtime:
+    time = extractedtime.read()
+    Time = str(time)
+with open("Alarmtext.txt","r+") as deletetime:
+    deletetime.truncate(0)
 
 def ring(time):
     timeset = str(time)
     timenow = timeset.replace("jarvis","")
     timenow = timenow.replace("set an alarm","")
     timenow = timenow.replace(" and ",":")
-    Alarmtime = str(timenow)
+    Alarmtime = timenow
     print(Alarmtime)
     while True:
         currenttime = datetime.datetime.now().strftime("%H:%M:%S")
         if currenttime == Alarmtime:
             speak("Alarm ringing,sir")
             os.startfile("music.mp3")
-        elif currenttime + "00:00:30" == Alarmtime:
+        elif f"{currenttime}00:00:30" == Alarmtime:
             exit()
 
 ring(time)

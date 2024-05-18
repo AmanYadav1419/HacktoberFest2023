@@ -57,7 +57,7 @@ def get_player_names():
 def get_dice_value():
  time.sleep(SLEEP_BETWEEN_ACTIONS)
  dice_value = random.randint(1, DICE_FACE)
- print("Dice value " + str(dice_value))
+ print(f"Dice value {dice_value}")
  return dice_value
 
 def got_snake_bite(old_value, current_value, player_name):
@@ -70,29 +70,29 @@ def got_ladder_jump(old_value, current_value, player_name):
     print("\n" + player_name + " is clibing the ladder from " + str(old_value) + " to " + str(current_value))
 
 def snake_ladder(player_name, current_value, dice_value):
-    time.sleep(SLEEP_BETWEEN_ACTIONS)
-    old_value = current_value
-    current_value = current_value + dice_value
-    if current_value > MAX_VAL:
-        print("You need " + str(MAX_VAL - old_value) + " to win this game. Keep trying.")
-        return old_value
-    print("\n" + player_name + " moved from " + str(old_value) + " to " + str(current_value))
-    if current_value in snake_position:
-        final_value = snake_position.get(current_value)
-        got_snake_bite(current_value, final_value, player_name)
-    elif current_value in ladders_position:
-        final_value = ladders_position.get(current_value)
-        got_ladder_jump(current_value, final_value, player_name)
-    else:
-        final_value = current_value
-    return final_value
+ time.sleep(SLEEP_BETWEEN_ACTIONS)
+ old_value = current_value
+ current_value = current_value + dice_value
+ if current_value > MAX_VAL:
+  print(f"You need {str(MAX_VAL - old_value)} to win this game. Keep trying.")
+  return old_value
+ print("\n" + player_name + " moved from " + str(old_value) + " to " + str(current_value))
+ if current_value in snake_position:
+     final_value = snake_position.get(current_value)
+     got_snake_bite(current_value, final_value, player_name)
+ elif current_value in ladders_position:
+     final_value = ladders_position.get(current_value)
+     got_ladder_jump(current_value, final_value, player_name)
+ else:
+     final_value = current_value
+ return final_value
 
 def check_win(player_name, position):
  time.sleep(SLEEP_BETWEEN_ACTIONS)
  if MAX_VAL == position:
-    print("\n" + player_name + "has won the game.")
-    print("Congratulations " + player_name +"You are the winner")
-    sys.exit(1)
+  print("\n" + player_name + "has won the game.")
+  print(f"Congratulations {player_name}You are the winner")
+  sys.exit(1)
 
 def start():
  first_msg()
@@ -102,21 +102,21 @@ def start():
  p1_current_position = 0
  p2_current_position = 0
  while True:
-    time.sleep(SLEEP_BETWEEN_ACTIONS)
-    input_1 = input("\n" + p1_name + ": " + random.choice(text_for_plr_turn) + " Press enter for rolling the dice: ")
-    print("\n d\Dice is being rolled...")
-    dice_value = get_dice_value()
-    time.sleep(SLEEP_BETWEEN_ACTIONS)
-    print(p1_name + " moving....")
-    p1_current_position = snake_ladder(p1_name, p1_current_position, dice_value)
-    check_win(p1_name, p1_current_position)
-    input_2 = input("\n" + p2_name + ": " + random.choice(text_for_plr_turn) + " Press enter for rolling the dice: ")
-    print("\n Dice is being rolled...")
-    dice_value = get_dice_value()
-    time.sleep(SLEEP_BETWEEN_ACTIONS)
-    print(p2_name + " moving....")
-    p2_current_position = snake_ladder(p2_name, p2_current_position, dice_value)
-    check_win(p2_name, p2_current_position)
+  time.sleep(SLEEP_BETWEEN_ACTIONS)
+  input_1 = input("\n" + p1_name + ": " + random.choice(text_for_plr_turn) + " Press enter for rolling the dice: ")
+  print("\n d\Dice is being rolled...")
+  dice_value = get_dice_value()
+  time.sleep(SLEEP_BETWEEN_ACTIONS)
+  print(f"{p1_name} moving....")
+  p1_current_position = snake_ladder(p1_name, p1_current_position, dice_value)
+  check_win(p1_name, p1_current_position)
+  input_2 = input("\n" + p2_name + ": " + random.choice(text_for_plr_turn) + " Press enter for rolling the dice: ")
+  print("\n Dice is being rolled...")
+  dice_value = get_dice_value()
+  time.sleep(SLEEP_BETWEEN_ACTIONS)
+  print(f"{p2_name} moving....")
+  p2_current_position = snake_ladder(p2_name, p2_current_position, dice_value)
+  check_win(p2_name, p2_current_position)
 
 if __name__ == "__main__":
  start()

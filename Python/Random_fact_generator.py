@@ -7,7 +7,7 @@ a = 100
 while data != "no" or 'n':
     while a != 0:
         print("Here is random fact for you!\n")
-        url = f"https://catfact.ninja/fact"
+        url = "https://catfact.ninja/fact"
         info = requests.get(url)
         conversion = json.loads(info.text)
         print(conversion["fact"])

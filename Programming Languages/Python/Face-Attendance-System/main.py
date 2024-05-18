@@ -30,15 +30,13 @@ img_background = cv2.imread('C://Users//Mohak//Desktop//NXtech-Python//NXTECH-Py
 # Importing the mode images into a list
 folderModePath = 'C://Users//Mohak//Desktop//NXtech-Python//NXTECH-Python-Task-Number-3//Resources//Modes'
 modePathList = os.listdir(folderModePath)
-imgmodeList = []
-for path in modePathList:
-    imgmodeList.append(cv2.imread(os.path.join(folderModePath, path)))
-
+imgmodeList = [
+    cv2.imread(os.path.join(folderModePath, path)) for path in modePathList
+]
 # Load The Encoding File
 print("Loading Encode File ...")
-file = open('C://Users//Mohak//Desktop//NXtech-Python//NXTECH-Python-Task-Number-3//EncodeFile.p', 'rb')
-encodeListKnownWithID = pickle.load(file)
-file.close()
+with open('C://Users//Mohak//Desktop//NXtech-Python//NXTECH-Python-Task-Number-3//EncodeFile.p', 'rb') as file:
+    encodeListKnownWithID = pickle.load(file)
 encodeListKnown, studentID = encodeListKnownWithID
 print("Encode File loaded")
 
